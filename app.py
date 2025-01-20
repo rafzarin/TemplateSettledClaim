@@ -71,7 +71,7 @@ def save_to_excel(df):
     return output
 
 # Streamlit app
-st.title("Ay Ay Claim Data Raw to Template")
+st.title("Claim Data Raw to Template")
 
 # File uploader
 uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
