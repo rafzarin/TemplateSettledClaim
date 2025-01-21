@@ -93,10 +93,10 @@ if uploaded_file:
     total_excess = transformed_data["Sum of Excess Total"].sum()
 
     st.write("Summary Statistics:")
-    st.write(f"- Total Claims: {total_claims}")
-    st.write(f"- Total Billed: {total_billed}")
-    st.write(f"- Total Accepted: {total_accepted}")
-    st.write(f"- Total Excess: {total_excess}")
+    st.write(f"- Total Claims: {total_claims:,}")
+    st.write(f"- Total Billed: {total_billed:,.2f}")  # Assuming it's monetary and needs 2 decimal points
+    st.write(f"- Total Accepted: {total_accepted:,.2f}")
+    st.write(f"- Total Excess: {total_excess:,.2f}")
 
     # Download link for the Excel file
     st.write("Download the transformed data as an Excel file:")
