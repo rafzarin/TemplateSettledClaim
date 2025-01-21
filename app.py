@@ -86,6 +86,18 @@ if uploaded_file:
     st.write("Transformed Data Preview:")
     st.dataframe(transformed_data.head())
 
+    # Compute summary statistics
+    total_claims = len(transformed_data)
+    total_billed = transformed_data["Sum of Billed"].sum()
+    total_accepted = transformed_data["Sum of Accepted"].sum()
+    total_excess = transformed_data["Sum of Excess Total"].sum()
+
+    st.write("Summary Statistics:")
+    st.write(f"- Total Claims: {total_claims}")
+    st.write(f"- Total Billed: {total_billed}")
+    st.write(f"- Total Accepted: {total_accepted}")
+    st.write(f"- Total Excess: {total_excess}")
+
     # Download link for the Excel file
     st.write("Download the transformed data as an Excel file:")
     excel_file = save_to_excel(transformed_data)
@@ -95,3 +107,4 @@ if uploaded_file:
         file_name="Transformed_Claim_Data.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
+
