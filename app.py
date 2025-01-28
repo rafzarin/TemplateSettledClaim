@@ -93,10 +93,10 @@ if uploaded_file:
 
     # Compute summary statistics
     total_claims = len(transformed_data)
-    total_billed = transformed_data["Sum of Billed"].sum()
-    total_accepted = transformed_data["Sum of Accepted"].sum()
-    total_excess = transformed_data["Sum of Excess Total"].sum()
-    total_unpaid = transformed_data["Sum of Unpaid"].sum()
+    total_billed = int(transformed_data["Sum of Billed"].sum())
+    total_accepted = int(transformed_data["Sum of Accepted"].sum())
+    total_excess = int(transformed_data["Sum of Excess Total"].sum())
+    total_unpaid = int(transformed_data["Sum of Unpaid"].sum())
 
     summary = {
         "Total Claims": total_claims,
