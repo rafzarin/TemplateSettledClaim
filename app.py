@@ -98,6 +98,14 @@ if uploaded_file:
     total_excess = transformed_data["Sum of Excess Total"].sum()
     total_unpaid = transformed_data["Sum of Unpaid"].sum()
 
+    summary = {
+        "Total Claims": total_claims,
+        "Total Billed": f"{total_billed:,.2f}",
+        "Total Accepted": f"{total_accepted:,.2f}",
+        "Total Excess": f"{total_excess:,.2f}",
+        "Total Unpaid": f"{total_unpaid:,.2f}",
+    }
+
     st.write("Claim Summary:")
     st.write(f"- Total Claims: {total_claims:,}")
     st.write(f"- Total Billed: {total_billed:,.2f}")  # Assuming it's monetary and needs 2 decimal points
@@ -107,7 +115,7 @@ if uploaded_file:
 
     # Download link for the Excel file
     st.write("Download the transformed data as an Excel file:")
-    excel_file = save_to_excel(transformed_data)
+    excel_file = save_to_excel(transformed_data, summary=summary)
     st.download_button(
         label="Download Excel File",
         data=excel_file,
