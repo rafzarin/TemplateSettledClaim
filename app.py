@@ -100,10 +100,10 @@ if uploaded_file:
 
     summary = {
         "Total Claims": total_claims,
-        "Total Billed": f"{total_billed:,.2f}",
-        "Total Accepted": f"{total_accepted:,.2f}",
-        "Total Excess": f"{total_excess:,.2f}",
-        "Total Unpaid": f"{total_unpaid:,.2f}",
+        "Total Billed": f"{total_billed:,}",
+        "Total Accepted": f"{total_accepted:,}",
+        "Total Excess": f"{total_excess:,}",
+        "Total Unpaid": f"{total_unpaid:,}",
     }
 
     st.write("Claim Summary:")
