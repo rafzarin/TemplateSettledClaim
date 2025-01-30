@@ -66,12 +66,13 @@ def move_to_template(df):
 def save_to_excel(df, summary):
     output = BytesIO()
     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        # Write the transformed data
-        df.to_excel(writer, index=False, sheet_name='SC')
-        
+
         # Write the summary
         summary_df = pd.DataFrame.from_dict(summary, orient='index', columns=['Value'])
         summary_df.to_excel(writer, index=True, sheet_name='Summary')
+        
+        # Write the transformed data
+        df.to_excel(writer, index=False, sheet_name='SC')
     output.seek(0)
     return output
 
