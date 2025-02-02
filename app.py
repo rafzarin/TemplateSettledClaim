@@ -66,7 +66,6 @@ def move_to_template(df):
 def save_to_excel(df, summary, filename):
     output = BytesIO()
     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-
         # Write the summary
         summary_df = pd.DataFrame.from_dict(summary, orient='index', columns=['Value'])
         summary_df.to_excel(writer, index=True, sheet_name='Summary')
@@ -74,7 +73,7 @@ def save_to_excel(df, summary, filename):
         # Write the transformed data
         df.to_excel(writer, index=False, sheet_name='SC')
     output.seek(0)
-    return output
+    return output, filename
 
 # Streamlit app
 st.title("Claim Data Raw to Template")
@@ -109,7 +108,7 @@ if uploaded_file:
 
     st.write("Claim Summary:")
     st.write(f"- Total Claims: {total_claims:,}")
-    st.write(f"- Total Billed: {total_billed:,.2f}")  # Assuming it's monetary and needs 2 decimal points
+    st.write(f"- Total Billed: {total_billed:,.2f}")
     st.write(f"- Total Accepted: {total_accepted:,.2f}")
     st.write(f"- Total Excess: {total_excess:,.2f}")
     st.write(f"- Total Unpaid: {total_unpaid:,.2f}")
@@ -126,4 +125,3 @@ if uploaded_file:
             file_name=final_filename,
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
-
