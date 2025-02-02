@@ -114,13 +114,16 @@ if uploaded_file:
     st.write(f"- Total Excess: {total_excess:,.2f}")
     st.write(f"- Total Unpaid: {total_unpaid:,.2f}")
 
+    # User input for filename
+    filename = st.text_input("Enter the Excel file name (without extension):", "Transformed_Claim_Data")
+
     # Download link for the Excel file
-    st.write("Download the transformed data as an Excel file:")
-    excel_file = save_to_excel(transformed_data, summary=summary)
-    st.download_button(
-        label="Download Excel File",
-        data=excel_file,
-        file_name="Transformed_Claim_Data.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+    if filename:
+        excel_file, final_filename = save_to_excel(transformed_data, summary=summary, filename=filename + ".xlsx")
+        st.download_button(
+            label="Download Excel File",
+            data=excel_file,
+            file_name=final_filename,
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
 
