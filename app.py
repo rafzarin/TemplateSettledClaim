@@ -63,13 +63,9 @@ def move_to_template(df):
     return df_transformed
 
 # Save the processed data to Excel and return as BytesIO
-def save_to_excel(df, summary, filename):
+def save_to_excel(df, filename):
     output = BytesIO()
     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        # Write the summary
-        summary_df = pd.DataFrame.from_dict(summary, orient='index', columns=['Value'])
-        summary_df.to_excel(writer, index=True, sheet_name='Summary')
-        
         # Write the transformed data
         df.to_excel(writer, index=False, sheet_name='SC')
     output.seek(0)
@@ -98,14 +94,6 @@ if uploaded_file:
     total_excess = int(transformed_data["Sum of Excess Total"].sum())
     total_unpaid = int(transformed_data["Sum of Unpaid"].sum())
 
-    summary = {
-        "Total Claims": total_claims,
-        "Total Billed": total_billed,
-        "Total Accepted": total_accepted,
-        "Total Excess": total_excess,
-        "Total Unpaid": total_unpaid,
-    }
-
     st.write("Claim Summary:")
     st.write(f"- Total Claims: {total_claims:,}")
     st.write(f"- Total Billed: {total_billed:,.2f}")
@@ -118,7 +106,7 @@ if uploaded_file:
 
     # Download link for the Excel file
     if filename:
-        excel_file, final_filename = save_to_excel(transformed_data, summary=summary, filename=filename + ".xlsx")
+        excel_file, final_filename = save_to_excel(transformed_data, filename=filename + ".xlsx")
         st.download_button(
             label="Download Excel File",
             data=excel_file,
