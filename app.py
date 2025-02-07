@@ -42,6 +42,8 @@ def move_to_template(df):
         "Emp Name": new_df["EmpName"],
         "Patient Name": new_df["PatientName"],
         "Membership": new_df["Membership"],
+        "Plan":new_df["PPlan"],
+        "Classification": new_df["Classification"],
         "Product Type": new_df["ProductType"],
         "Claim Type": new_df["ClaimType"],
         "Room Option": new_df["RoomOption"],
