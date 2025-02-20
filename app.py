@@ -48,6 +48,7 @@ def move_to_template(df):
         "Area": new_df["Area"],
         "Diagnosis": new_df["PrimaryDiagnosis"],
         "Treatment Place": new_df["TreatmentPlace"],
+        "Doctor": new_df["Doctor"],
         "Treatment Start": new_df["TreatmentStart"],
         "Treatment Finish": new_df["TreatmentFinish"],
         "Date": new_df["Date"],
